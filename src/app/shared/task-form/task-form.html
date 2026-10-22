@@ -1,0 +1,19 @@
+<form class="task-layout" (submit)="onSubmit($event)">
+  <div class="card">
+    <h1>{{ title() }}</h1>
+    <p class="hint">{{ hint() }}</p>
+    <ng-content />
+    <div class="actions">
+      <button class="btn btn-primary" type="submit" [disabled]="pending()">
+        {{ pending() ? 'Writing…' : 'Write draft' }}
+      </button>
+    </div>
+  </div>
+  <app-draft-pane
+    [text]="draft()"
+    [pending]="pending()"
+    [error]="error()"
+    [mono]="mono()"
+    [meta]="meta()"
+  />
+</form>

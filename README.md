@@ -1,59 +1,44 @@
-# VerbaNodeApp
+# verbaNodeApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.7.
+Angular 22 workspace for [VerbaNode](../README.md). Commit, Pull request, Prompt, and Git each post to the local n8n webhook and show the draft. Prompt and Git do not call the model. Git does not run the commands it writes.
+
+![Commit screen](docs/screenshot/01-commit.png)
+
+## Screenshots
+
+| Task | Preview |
+| --- | --- |
+| Commit | ![Commit](docs/screenshot/01-commit.png) |
+| Pull request | ![Pull request](docs/screenshot/02-pull-request.png) |
+| Prompt | ![Prompt](docs/screenshot/03-prompt.png) |
+| Git | ![Git](docs/screenshot/04-git.png) |
+| History | ![History](docs/screenshot/05-history.png) |
+
+LM Studio and n8n are not started by this package. Boot them from the repository root. This app never calls the model port.
+
+## Docs
+
+| File | Contents |
+| --- | --- |
+| [docs/files/architecture_guidelines.md](docs/files/architecture_guidelines.md) | Modules, routes, webhook client |
+| [docs/files/design_guidelines.md](docs/files/design_guidelines.md) | Tokens, layout, interaction |
+| [../docs/files/n8n.md](../docs/files/n8n.md) | JSON the forms must send |
+
+Screenshots of the real UI live in `docs/screenshot/` (copies of the root captures).
 
 ## Development server
 
-To start a local development server, run:
-
 ```bash
-ng serve
+npm start -- --host 127.0.0.1 --port 4200
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open [http://127.0.0.1:4200/](http://127.0.0.1:4200/). The proxy sends `/webhook` to n8n on port 5678. Bind to `127.0.0.1` so Angular SSR accepts the Host header.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Tests and build
 
 ```bash
-ng generate component component-name
+npm test
+npm run build
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The production build is written to `dist/`. Serving that build in Compose is a later step. The SSR process only serves the shell. It must not call n8n or LM Studio.

@@ -1,0 +1,29 @@
+<app-task-form
+  title="Pull request"
+  hint="One English paragraph for the GitHub pull request, about 150–200 characters."
+  [pending]="pending()"
+  [draft]="draft()"
+  [error]="error()"
+  [mono]="false"
+  [meta]="meta()"
+  (write)="submit($event)"
+>
+  <label class="field">
+    <span>Use case</span>
+    <textarea
+      name="brief"
+      maxlength="4000"
+      [value]="brief()"
+      (input)="brief.set(text($event))"
+    ></textarea>
+  </label>
+  <label class="field">
+    <span>Notes</span>
+    <textarea
+      name="context"
+      maxlength="24000"
+      [value]="context()"
+      (input)="context.set(text($event))"
+    ></textarea>
+  </label>
+</app-task-form>

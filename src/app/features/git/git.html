@@ -1,0 +1,29 @@
+<app-task-form
+  title="Git"
+  hint="Builds the init, commit, and push commands. This page does not run them."
+  [pending]="pending()"
+  [draft]="draft()"
+  [error]="error()"
+  (write)="submit($event)"
+>
+  <label class="field">
+    <span>Commit message</span>
+    <input
+      name="brief"
+      maxlength="4000"
+      [value]="brief()"
+      (input)="brief.set(text($event))"
+    />
+  </label>
+  <label class="field">
+    <span>Origin URL</span>
+    <input
+      name="origin"
+      inputmode="url"
+      spellcheck="false"
+      placeholder="https://github.com/owner/repo.git"
+      [value]="origin()"
+      (input)="origin.set(text($event))"
+    />
+  </label>
+</app-task-form>

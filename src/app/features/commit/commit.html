@@ -1,0 +1,35 @@
+<app-task-form
+  title="Commit"
+  hint="The draft is one line: git commit -m &quot;summary&quot;."
+  [pending]="pending()"
+  [draft]="draft()"
+  [error]="error()"
+  (write)="submit($event)"
+>
+  <label class="field">
+    <span>Summary</span>
+    <textarea
+      name="brief"
+      maxlength="4000"
+      [value]="brief()"
+      (input)="brief.set(text($event))"
+    ></textarea>
+  </label>
+  <label class="field">
+    <span>Diff or notes</span>
+    <textarea
+      class="diff"
+      name="context"
+      maxlength="24000"
+      [value]="context()"
+      (input)="context.set(text($event))"
+    ></textarea>
+  </label>
+  <label class="field">
+    <span>Language</span>
+    <select name="language" [value]="language()" (change)="language.set(text($event))">
+      <option value="en">English</option>
+      <option value="es">Spanish</option>
+    </select>
+  </label>
+</app-task-form>

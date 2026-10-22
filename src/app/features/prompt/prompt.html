@@ -1,0 +1,27 @@
+<app-task-form
+  title="Prompt"
+  hint="Composes the implementation prompt. It does not edit the repository, and it leaves design_guidelines.md and architecture_guidelines.md gitignored."
+  [pending]="pending()"
+  [draft]="draft()"
+  [error]="error()"
+  (write)="submit($event)"
+>
+  <label class="field">
+    <span>What to do next</span>
+    <textarea
+      name="brief"
+      maxlength="4000"
+      [value]="brief()"
+      (input)="brief.set(text($event))"
+    ></textarea>
+  </label>
+  <label class="field">
+    <span>Extra notes</span>
+    <textarea
+      name="context"
+      maxlength="24000"
+      [value]="context()"
+      (input)="context.set(text($event))"
+    ></textarea>
+  </label>
+</app-task-form>

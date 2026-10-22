@@ -1,0 +1,22 @@
+<section class="draft" aria-live="polite">
+  <p class="draft-label">Draft</p>
+  <p class="status-line" [class.is-error]="!!error() && !pending()">
+    @if (pending()) {
+      Writing…
+    } @else if (copied()) {
+      Copied
+    } @else if (error()) {
+      <span role="alert">{{ error() }}</span>
+    } @else if (!text()) {
+      No draft yet.
+    } @else {
+      {{ meta() || 'Draft' }}
+    }
+  </p>
+  @if (text()) {
+    <pre [class.prose]="!mono()">{{ text() }}</pre>
+  }
+  <div class="actions">
+    <button class="btn" type="button" (click)="copy()" [disabled]="!text() || pending()">Copy</button>
+  </div>
+</section>

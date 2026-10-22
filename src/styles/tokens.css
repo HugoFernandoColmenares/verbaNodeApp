@@ -1,0 +1,13 @@
+:root {
+  --color-canvas: #f3f0e8;
+  --color-surface: #fffcf6;
+  --color-surface-raised: #e7e1d6;
+  --color-panel: #efeae1;
+  --color-text: #1c1915;
+  --color-text-soft: #5e584f;
+  --color-main: #1f6f5b;
+  --color-main-hot: #185a4a;
+  --color-on-main: #fffcf6;
+  --color-trim: rgba(28, 25, 21, 0.14);
+  --color-danger: #8f2d2d;
+}
